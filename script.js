@@ -30,7 +30,10 @@ generateGrid(n);
 const newGridButton = document.querySelector("#config");
 
 newGridButton.addEventListener("click", () => {
-   n = parseInt(prompt("Number of square per side for the new grid:"))
-   clearGrid();
-   generateGrid(n);
+  do {
+    n = parseInt(prompt("Number of square per side for the new grid: (Max 100)"));
+  } while(n > 100);
+
+    clearGrid();
+    generateGrid(n);
 });
