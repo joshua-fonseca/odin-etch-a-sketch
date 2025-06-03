@@ -1,4 +1,5 @@
 const container = document.querySelector(".container")
+const gridSize= document.querySelector("#grid-size");
 
 let n = 16;
 let rainbow = false;
@@ -25,6 +26,8 @@ let randomColourGen = () => {
 let generateGrid = (n) => {
   for(let i=0; i<n**2; i++) {
     const square = document.createElement("div");
+    // grid size text
+    gridSize.textContent = `${n} x ${n}`;
 
     square.style.width = `${100 / n}%`;
     square.style.aspectRatio = "1 / 1";
@@ -49,8 +52,9 @@ const newGridButton = document.querySelector("#config");
 
 newGridButton.addEventListener("click", () => {
   do {
-    n = parseInt(prompt("Enter dimensions of new grid (Max 100):"));
-  } while(n > 100);
+    n = parseInt(prompt("Enter dimensions of new grid (1-100):"));
+    console.log(n);
+  } while(n > 100 || isNaN(n) || n === 0);
 
     clearGrid();
     generateGrid(n);
