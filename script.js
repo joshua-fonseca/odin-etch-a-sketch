@@ -1,6 +1,26 @@
 const container = document.querySelector(".container")
 
 let n = 16;
+let rainbow = false;
+
+// rainbow pen
+let setPen = (square) => {
+    square.addEventListener("mouseover", (event) => {
+      if(rainbow) {
+        square.style.backgroundColor = randomColourGen();
+      } else {
+        square.style.backgroundColor = "black";
+      }
+  });
+}
+
+const rainbowPen = document.querySelector("#rainbow");
+
+rainbowPen.addEventListener('click', () => rainbow = !rainbow);
+
+let randomColourGen = () => {
+  return `rgb(${Math.random()*256},${Math.random()*256},${Math.random()*256})`
+}
 
 let generateGrid = (n) => {
   for(let i=0; i<n**2; i++) {
@@ -10,9 +30,7 @@ let generateGrid = (n) => {
     square.style.aspectRatio = "1 / 1";
     square.classList.add("square");
 
-    square.addEventListener("mouseover", (event) => {
-      square.style.backgroundColor = "black";
-    });
+    setPen(square);
 
     container.appendChild(square);
   }
@@ -31,7 +49,7 @@ const newGridButton = document.querySelector("#config");
 
 newGridButton.addEventListener("click", () => {
   do {
-    n = parseInt(prompt("Number of square per side for the new grid: (Max 100)"));
+    n = parseInt(prompt("Enter dimensions of new grid (Max 100):"));
   } while(n > 100);
 
     clearGrid();
