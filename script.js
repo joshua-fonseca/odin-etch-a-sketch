@@ -4,19 +4,28 @@ const newGridButton = document.querySelector("#config");
 
 let n = 24;
 let penMode = "black";
+let opacity = 1;
+
+// set opacity
+let updateValue = (val) => {
+  opacity = val;
+  const opacitySliderText = document.querySelector("#slider-value");
+  opacitySliderText.textContent = `${opacity}`;
+}
 
 // setPen behaviour
 let setPen = (square) => {
   square.addEventListener("mouseover", (event) => {
     switch (penMode) {
-      case "black":
-        square.style.backgroundColor = "black";
-        break;
       case "rainbow":
-        square.style.backgroundColor = randomColourGen();
+      case "black":
+        square.style.backgroundColor = penMode === "black" ? "black" : randomColourGen();
+        // square.style.opacity || 0 → uses 0 if no opacity is set
+        square.style.opacity = `${parseFloat(square.style.opacity || 0) + parseFloat(opacity)}`;
         break;
       default:
         square.style.removeProperty("background-color");
+        square.style.removeProperty("opacity");
     }
   });
 }
@@ -26,7 +35,7 @@ let randomColourGen = () => {
 }
 
 // change pan behaviour
-const penButtons = document.querySelectorAll(".toolbar-right > *");
+const penButtons = document.querySelectorAll(".toolbar-right > button");
 // console.log(penButtons);
 
 penButtons.forEach(button => {

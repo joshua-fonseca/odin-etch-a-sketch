@@ -15,6 +15,11 @@
   <div class="toolbar">
     <button type="button" id="config">New Grid</button>
     <div class="toolbar-right">
+      <div class="slidecontainer">
+        <span id="slider-label">Opacity:</span>
+        <input type="range" min="0" max="1" value="1" id="slider" step="0.1" onchange="updateValue(this.value);">
+        <span id="slider-value">1</span>
+      </div>
       <button type="button" id="black" data-pen="black" class="active-pen">Black pen</button>
       <button type="button" id="rainbow" data-pen="rainbow">RGB pen</button>
       <button type="button" id="eraser" data-pen="">Eraser</button>

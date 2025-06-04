@@ -23,7 +23,8 @@ body {
   border: 1px solid #e4e4e4;
 }
 
-.toolbar button {
+.toolbar button,
+.slidecontainer {
   padding: 0.5rem;
   background-color: #9147ff;
   border: none;
@@ -59,4 +60,15 @@ body {
   margin-left: auto;
   gap: 1rem;
   flex-wrap: wrap;
+}
+
+.slidecontainer {
+  display: flex;
+  accent-color: white;
+  flex-wrap: wrap;
+}
+
+#slider-value {
+  width: 2.5ch;
+  text-align: right;
 }
