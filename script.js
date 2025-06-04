@@ -1,28 +1,48 @@
 const container = document.querySelector(".container")
-const gridSize= document.querySelector("#grid-size");
+const gridSize = document.querySelector("#grid-size");
+const newGridButton = document.querySelector("#config");
 
-let n = 16;
-let rainbow = false;
+let n = 24;
+let penMode = "black";
 
-// rainbow pen
+// setPen behaviour
 let setPen = (square) => {
-    square.addEventListener("mouseover", (event) => {
-      if(rainbow) {
-        square.style.backgroundColor = randomColourGen();
-      } else {
+  square.addEventListener("mouseover", (event) => {
+    switch (penMode) {
+      case "black":
         square.style.backgroundColor = "black";
-      }
+        break;
+      case "rainbow":
+        square.style.backgroundColor = randomColourGen();
+        break;
+      default:
+        square.style.removeProperty("background-color");
+    }
   });
 }
-
-const rainbowPen = document.querySelector("#rainbow");
-
-rainbowPen.addEventListener('click', () => rainbow = !rainbow);
 
 let randomColourGen = () => {
   return `rgb(${Math.random()*256},${Math.random()*256},${Math.random()*256})`
 }
 
+// change pan behaviour
+const penButtons = document.querySelectorAll(".toolbar-right > *");
+// console.log(penButtons);
+
+penButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    penMode = button.dataset.pen;
+    // console.log(penMode);
+
+    // remove active class from all
+    penButtons.forEach(btn => btn.classList.remove("active-pen"));
+
+    // add active class to the clicked one
+    button.classList.add("active-pen");
+  });
+});
+
+// grid functions
 let generateGrid = (n) => {
   for(let i=0; i<n**2; i++) {
     const square = document.createElement("div");
@@ -45,11 +65,6 @@ let clearGrid = () => {
   }
 }
 
-generateGrid(n);
-
-// button
-const newGridButton = document.querySelector("#config");
-
 newGridButton.addEventListener("click", () => {
   do {
     n = parseInt(prompt("Enter dimensions of new grid (1-100):"));
@@ -59,3 +74,6 @@ newGridButton.addEventListener("click", () => {
     clearGrid();
     generateGrid(n);
 });
+
+// init
+generateGrid(n);

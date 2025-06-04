@@ -8,14 +8,19 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <p>Hover over the grid to paint to YOUR HEARTS CONTENT</p>
-  <p>There's no erase tool so have fun</p>
+  <h1>Hover over the grid to paint to YOUR HEARTS CONTENT</h1>
+  <h2>Now featuring an erase tool due to (very, very) popular demand</h2>
+  <p>TODO: probably make the eraser bigger (hit adjacent squares)</p>
   <p>Current grid: <span id="grid-size"></span></p>
-  <button type="button" id="config">New Grid</button>
-  <div>
-    <input type="checkbox" id="rainbow" name="rainbow">
-    <label for="rainbow">RGB pen</label><br>
+  <div class="toolbar">
+    <button type="button" id="config">New Grid</button>
+    <div class="toolbar-right">
+      <button type="button" id="black" data-pen="black" class="active-pen">Black pen</button>
+      <button type="button" id="rainbow" data-pen="rainbow">RGB pen</button>
+      <button type="button" id="eraser" data-pen="">Eraser</button>
+    </div>
   </div>
+  <div class="toolbar-divider"></div>
   <div class="container"></div>
 </body>
 </html>

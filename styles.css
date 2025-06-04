@@ -23,8 +23,40 @@ body {
   border: 1px solid #e4e4e4;
 }
 
-#config {
-  font-size: 1rem;
+.toolbar button {
   padding: 0.5rem;
-  margin: 1rem;
+  background-color: #9147ff;
+  border: none;
+  color: white;
+}
+
+.toolbar button:hover, .toolbar .active-pen {
+  background-color: #7e3edf;
+  color: rgb(237, 237, 237);
+}
+
+.toolbar button:active {
+  background-color: #592e9b;
+  color: rgb(218, 218, 218);
+}
+
+.toolbar {
+  display: flex;
+  width: 75vmin;
+  background-color: #9147ff;
+  flex-wrap: wrap;
+}
+
+.toolbar-divider {
+  display: flex;
+  width: 75vmin;
+  padding: 3px 0;
+  background-color: #7e3edf;
+}
+
+.toolbar-right {
+  display: flex;
+  margin-left: auto;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
